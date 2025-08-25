@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Animation Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #0f0f0f;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    header {
+      height: 100vh;
+      background: linear-gradient(to right, #1e1e1e, #111111);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-family: 'Orbitron', sans-serif;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7, 0 0 30px #00c8ff;
+      }
+      to {
+        text-shadow: 0 0 20px #ff00d4, 0 0 30px #ff00c8, 0 0 40px #ff0077;
+      }
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin-top: 1rem;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      background: #00fff7;
+      color: #000;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #ff00d4;
+      color: white;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      background-color: #1a1a1a;
+      text-align: center;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gallery div {
+      background: #111;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery div:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    footer {
+      background-color: #000;
+      color: #888;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Animation on scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to My Animation World</h1>
+    <p>Explore a stunning collection of motion graphics, 2D/3D animations, and visual effects.</p>
+    <button class="btn" onclick="scrollToSection()">See My Work</button>
+  </header>
+
+  <section id="portfolio">
+    <h2 class="fade-in">Featured Animations</h2>
+    <div class="gallery">
+      <div class="fade-in"><img src="https://via.placeholder.com/300x200?text=Animation+1" alt="Animation 1"></div>
+      <div class="fade-in"><img src="https://via.placeholder.com/300x200?text=Animation+2" alt="Animation 2"></div>
+      <div class="fade-in"><img src="https://via.placeholder.com/300x200?text=Animation+3" alt="Animation 3"></div>
+      <div class="fade-in"><img src="https://via.placeholder.com/300x200?text=Animation+4" alt="Animation 4"></div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 My Animation Studio. All rights reserved.
+  </footer>
+
+  <script>
+    function scrollToSection() {
+      document.getElementById("portfolio").scrollIntoView({ behavior: "smooth" });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
